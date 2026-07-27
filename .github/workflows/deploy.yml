@@ -43,13 +43,15 @@ jobs:
           mkdir -p dist
           
           # Encrypt all HTML files using StatiCrypt into dist/
-          npx staticrypt *.html -p "$STATICRYPT_PASSWORD" --output dist/
+          npx staticrypt *.html -p "$STATICRYPT_PASSWORD" --short --output dist/
           
           # Copy all non-HTML static assets (images, CSS, subdirectories) into dist/
           rsync -av --exclude='*.html' --exclude='.git*' --exclude='.github' --exclude='dist' ./ dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
