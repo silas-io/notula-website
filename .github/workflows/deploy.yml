@@ -40,7 +40,9 @@ jobs:
             exit 1
           fi
 
-          npx staticrypt * -r -p "$STATICRYPT_PASSWORD" -s "a4d89e1b2c3f4e567890abcdef123456" --share "https://silas-io.github.io/notula-website/" --short -d dist
+          mkdir -p dist
+          npx staticrypt *.html -p "$STATICRYPT_PASSWORD" -s "a4d89e1b2c3f4e567890abcdef123456" --share "https://silas-io.github.io/notula-website/" --short -d dist
+          rsync -av --exclude='*.html' --exclude='.git*' --exclude='.github' --exclude='dist' ./ dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
