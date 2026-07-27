@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notula — Download</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f8fafc'/><path d='M30,35 h40 M30,50 h40 M30,65 h25' stroke='%23000000' stroke-width='8' stroke-linecap='round'/></svg>" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #18181b;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      border-bottom: 1px solid #e4e4e7;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #18181b;
+    }
+
+    .brand-icon {
+      width: 22px;
+      height: 22px;
+      background: #18181b;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-icon svg {
+      width: 12px;
+      height: 12px;
+      fill: #ffffff;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .support-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: #71717a;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .support-link:hover {
+      color: #18181b;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+      gap: 40px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #71717a;
+      max-width: 420px;
+      line-height: 1.5;
+    }
+
+    .badges {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badges a {
+      display: flex;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .badges a:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    .badges a:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .badges img {
+      height: 56px;
+      width: auto;
+    }
+
+    footer {
+      padding: 20px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #a1a1aa;
+      border-top: 1px solid #e4e4e7;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand">
+      <div class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 14H7v-2h10v2zm0-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+      </div>
+      <span class="brand-name">Notula</span>
+    </a>
+    <a href="mailto:hello@notula.app" class="support-link">Contact Support</a>
+  </header>
+
+  <main>
+    <h1>Get Notula</h1>
+    <p class="subtitle">Your notes. Your rules. Download Notula for your platform.</p>
+
+    <div class="badges">
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+        <img src="badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store" />
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+        <img src="badges/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play" />
+      </a>
+      <a href="https://get.microsoft.com/installer/download/9P6TH4ZDNJCZ?referrer=appbadge" target="_blank" rel="noopener noreferrer" aria-label="Get it from Microsoft">
+        <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get it from Microsoft" height="56" />
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Notula. All binaries signed.
+  </footer>
+
+</body>
+</html>

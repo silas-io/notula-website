@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notula — Download</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f8fafc'/><path d='M30,35 h40 M30,50 h40 M30,65 h25' stroke='%23000000' stroke-width='8' stroke-linecap='round'/></svg>" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #18181b;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: #e4e4e7;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #18181b;
+    }
+
+    .brand-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .support-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: #71717a;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .support-link:hover {
+      color: #18181b;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 24px 48px;
+      text-align: center;
+      gap: 24px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out forwards;
+    }
+
+    .subtitle {
+      font-size: clamp(15px, 2vw, 18px);
+      color: #71717a;
+      max-width: 420px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out 0.2s forwards;
+    }
+
+    .badges {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out 0.4s forwards;
+    }
+
+    .badges a {
+      display: flex;
+    }
+
+    .badges img {
+      height: 56px;
+      width: auto;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      h1, .subtitle, .badges {
+        animation: none;
+        opacity: 1;
+      }
+    }
+
+    .mockup {
+      padding: 32px 24px 64px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .mockup-placeholder {
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16 / 10;
+      background: #f4f4f5;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #a1a1aa;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid #e4e4e7;
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out 0.6s forwards;
+    }
+
+    .mockup-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.4;
+    }
+
+    .features {
+      width: 100%;
+      background: #f9fafb;
+      padding: 80px 24px;
+    }
+
+    .features-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .feature {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: #71717a;
+      line-height: 1.5;
+      max-width: 240px;
+    }
+
+    @media (max-width: 640px) {
+      .features-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    footer {
+      padding: 20px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #a1a1aa;
+      border-top: 1px solid #e4e4e7;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <a href="#" class="brand">
+      <img src="app_icon.png" alt="" class="brand-icon" width="22" height="22" />
+      <span class="brand-name">Notula</span>
+    </a>
+    <a href="mailto:hello@notula.app" class="support-link">Contact Support</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Get Notula</h1>
+      <p class="subtitle">Your sheet music library across iOS, Android, macOS, and Windows</p>
+
+      <div class="badges">
+        <a href="https://testflight.apple.com/join/sdBAjKfP" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+          <img src="badges/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store" />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+          <img src="badges/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play" />
+        </a>
+        <a href="https://apps.microsoft.com/store/detail/9P6TH4ZDNJCZ?cid=DevShareMCLPCS" target="_blank" rel="noopener noreferrer" aria-label="Get it from Microsoft">
+          <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get it from Microsoft" height="56" />
+        </a>
+      </div>
+    </section>
+
+    <section class="mockup">
+      <div class="mockup-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />
+        </svg>
+        Screenshot coming soon
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="features-inner">
+        <div class="feature">
+          <div class="feature-icon">&#9998;</div>
+          <h3>Markdown native</h3>
+          <p>Write in plain Markdown. No proprietary formats, no lock-in.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#9729;</div>
+          <h3>Offline-first</h3>
+          <p>Works without internet. Your notes are always available.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#128274;</div>
+          <h3>End-to-end encrypted</h3>
+          <p>Only you can read your notes. Zero-knowledge by design.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>App Store is a service mark of Apple Inc., registered in the U.S. and other countries.</p>
+    <p>Google Play and the Google Play logo are trademarks of Google LLC.</p>
+    <p>Microsoft and the Microsoft Store logo are trademarks of Microsoft Corporation.</p>
+    <p>&copy; 2026 Notula. All binaries signed.</p>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 0);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

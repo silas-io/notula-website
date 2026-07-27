@@ -1,0 +1,11 @@
+{
+  "name": "notula-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && npx staticrypt *.html --output dist/ && rsync -av --exclude='*.html' --exclude='.git*' --exclude='.github' --exclude='dist' ./ dist/"
+  },
+  "devDependencies": {
+    "staticrypt": "^3.2.1"
+  }
+}

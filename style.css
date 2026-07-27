@@ -1,0 +1,573 @@
+/* ==========================================================================
+   NOTULA — Ultra-Minimalist Dual-Mockup Layout stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Colors */
+  --bg-dark: #09090b;          /* Dark Zinc */
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --text-primary: #f4f4f5;     /* Zinc 100 */
+  --text-secondary: #a1a1aa;   /* Zinc 400 */
+  --text-muted: #52525b;       /* Zinc 600 */
+}
+
+/* ─── Reset & Base Settings ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ─── Tactile Background Grid & Grain ─── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+/* ─── Layout Container ─── */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+/* ─── Simple Navigation Header ─── */
+.main-header {
+  width: 100%;
+  height: 64px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.brand-logo-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--text-primary);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo-icon svg {
+  width: 13px;
+  height: 13px;
+  fill: var(--bg-dark);
+}
+
+.brand-logo-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.support-link {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.support-link:hover {
+  color: var(--text-primary);
+}
+
+/* ─── Centered Hero Section ─── */
+.hero {
+  text-align: center;
+  margin-top: 56px;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(34px, 5.5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.hero p {
+  font-size: 15.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 520px;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+
+/* ─── Store Download Badges ─── */
+.store-badges {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin: 36px auto 0;
+  max-width: 600px;
+  width: 100%;
+}
+
+.store-badges a {
+  display: flex;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+}
+
+.store-badges a:hover {
+  transform: translateY(-3px) scale(1.04);
+  filter: brightness(1.15);
+}
+
+.store-badges a:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.store-badges img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+/* ─── Dual Mockup Showcase Container ─── */
+.showcase-container {
+  position: relative;
+  max-width: 640px;
+  margin: 56px auto 40px;
+  height: 380px;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+/* Desktop Mockup (Left Base) */
+.mockup-desktop {
+  width: 520px;
+  height: 310px;
+  border-radius: 10px;
+  background: #000000;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateZ(0);
+  transition: border-color 0.2s;
+}
+
+.mockup-desktop:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Desktop Mockup Controls */
+.desktop-header {
+  height: 36px;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.desktop-circles {
+  display: flex;
+  gap: 6px;
+}
+
+.desktop-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.desktop-title {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+/* Desktop App Interface */
+.desktop-app {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+}
+
+.desktop-sidebar {
+  border-right: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.01);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-title {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.sidebar-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-item {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  transition: all 0.2s;
+}
+
+.sidebar-item.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+.sidebar-item-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #10b981; /* Green dot */
+}
+
+/* Desktop Editor */
+.desktop-editor {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.editor-text {
+  color: #d4d4d8;
+  max-height: 160px;
+  overflow-y: hidden;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.editor-line-num {
+  color: var(--text-muted);
+  margin-right: 8px;
+  display: inline-block;
+  width: 14px;
+  text-align: right;
+}
+
+.editor-header-tag {
+  color: #818cf8;
+  font-weight: 500;
+}
+
+.desktop-status-logs {
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+  font-size: 9.5px;
+  color: var(--text-muted);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.desktop-status-logs span {
+  color: var(--text-secondary);
+}
+
+/* Mobile Mockup (Overlay Right with 3D Depth) */
+.mockup-mobile {
+  width: 160px;
+  height: 320px;
+  border-radius: 24px;
+  background: #000000;
+  border: 5px solid #27272a;
+  box-shadow: -15px 15px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  position: absolute;
+  bottom: 0;
+  right: 16px;
+  z-index: 20;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px 10px;
+  transform: translateZ(40px); /* Physically floats in front of desktop window! */
+}
+
+.mobile-notch {
+  width: 60px;
+  height: 10px;
+  background: #27272a;
+  border-radius: 0 0 6px 6px;
+  margin: -12px auto 8px;
+}
+
+.mobile-screen {
+  flex: 1;
+  background: #09090b;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mobile-app-header {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.mobile-note {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px;
+  transition: all 0.25s;
+}
+
+.mobile-note.active {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.mobile-note-title {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1px;
+}
+
+.mobile-note-desc {
+  font-size: 8px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-action {
+  height: 22px;
+  background: var(--text-primary);
+  color: var(--bg-dark);
+  font-size: 8.5px;
+  font-weight: 600;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fade animation classes */
+.fade-out {
+  opacity: 0 !important;
+}
+
+/* ─── Entrance Reveal Animations ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-element {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-delay-1 { animation-delay: 120ms; }
+.reveal-delay-2 { animation-delay: 240ms; }
+
+/* ─── Footer Section ─── */
+footer {
+  border-top: 1px solid var(--border-color);
+  padding: 24px 0;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+footer .footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+footer a:hover {
+  color: var(--text-primary);
+}
+
+/* ─── Responsive Breakpoints ─── */
+@media (max-width: 680px) {
+  .store-badges {
+    gap: 12px;
+  }
+
+  .store-badges img {
+    height: 36px;
+  }
+
+  .showcase-container {
+    max-width: 480px;
+    height: 300px;
+    margin: 40px auto;
+  }
+  
+  .mockup-desktop {
+    width: 400px;
+    height: 240px;
+  }
+  
+  .desktop-app {
+    grid-template-columns: 100px 1fr;
+  }
+  
+  .desktop-sidebar {
+    padding: 8px;
+  }
+  
+  .mockup-mobile {
+    width: 120px;
+    height: 240px;
+    right: 8px;
+  }
+  
+  .mobile-note-desc {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .store-badges {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .store-badges img {
+    height: 40px;
+  }
+
+  .showcase-container {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 16px;
+    margin: 32px 0;
+    align-items: center;
+  }
+  
+  .mockup-desktop, .mockup-mobile {
+    position: static;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  
+  .mockup-desktop {
+    width: 100%;
+    max-width: 380px;
+    height: 240px;
+  }
+  
+  .mockup-mobile {
+    width: 140px;
+    height: 280px;
+  }
+}

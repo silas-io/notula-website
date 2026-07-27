@@ -1,0 +1,61 @@
+name: Encrypt and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build & Encrypt Site with StatiCrypt
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
+        run: |
+          if [ -z "$STATICRYPT_PASSWORD" ]; then
+            echo "Error: STATICRYPT_PASSWORD secret is not set in repository settings."
+            exit 1
+          fi
+
+          mkdir -p dist
+          
+          # Encrypt all HTML files using StatiCrypt into dist/
+          npx staticrypt *.html -p "$STATICRYPT_PASSWORD" --output dist/
+          
+          # Copy all non-HTML static assets (images, CSS, subdirectories) into dist/
+          rsync -av --exclude='*.html' --exclude='.git*' --exclude='.github' --exclude='dist' ./ dist/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
