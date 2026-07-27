@@ -40,21 +40,8 @@ jobs:
             exit 1
           fi
 
-          mkdir -p dist
-          
-          # Encrypt index.html directly into dist/index.html
-          npx staticrypt index.html -p "$STATICRYPT_PASSWORD" --short -o dist/index.html
-          
-          # If you have other HTML files, encrypt them into dist/ as well
-          for f in *.html; do
-            if [ "$f" != "index.html" ]; then
-              npx staticrypt "$f" -p "$STATICRYPT_PASSWORD" --short -o "dist/$f"
-            fi
-          done
-          
-          # Copy all non-HTML static assets (images, CSS, subdirectories) into dist/
-          rsync -av --exclude='*.html' --exclude='.git*' --exclude='.github' --exclude='dist' ./ dist/
-          
+          npx staticrypt * -r -p "$STATICRYPT_PASSWORD" --short -d dist
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
